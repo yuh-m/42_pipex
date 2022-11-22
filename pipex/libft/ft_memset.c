@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/22 17:37:21 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/04/14 02:44:30 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/11/21 16:30:45 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../inc/libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h> //perror
-#include "libft.h"
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*pointer;
+	size_t			cnt;
 
-int	pipex(int argc, char **argv);
-
-#endif
+	pointer = s;
+	cnt = 0;
+	while (cnt < n)
+	{
+		pointer[cnt] = c;
+		cnt++;
+	}
+	return (s);
+}

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/22 17:37:21 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/04/14 02:44:30 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/11/21 16:30:45 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../inc/libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h> //perror
-#include "libft.h"
-
-int	pipex(int argc, char **argv);
-
-#endif
+void	*ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, '\0', n);
+	return (0);
+}

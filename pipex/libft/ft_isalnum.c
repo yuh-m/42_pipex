@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/22 17:37:21 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/04/07 23:55:42 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/11/21 16:30:45 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../inc/libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h> //perror
-#include "libft.h"
-
-int	pipex(int argc, char **argv);
-
-#endif
+int	ft_isalnum(int c)
+{
+	if (ft_isalpha(c) || ft_isdigit(c))
+	{
+		return (1);
+	}
+	return (0);
+}

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/22 17:37:21 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/05/02 20:35:37 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/11/21 16:30:45 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../inc/libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h> //perror
-#include "libft.h"
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
 
-int	pipex(int argc, char **argv);
-
-#endif
+	i = 0;
+	if (!ft_isascii(c))
+		return ((char *) s);
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			return ((char *) s + i);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *)s + i);
+	return (NULL);
+}

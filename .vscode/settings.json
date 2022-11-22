@@ -1,0 +1,19 @@
+{
+    "editor.tabSize": 4,
+    "editor.rulers": [
+        80
+    ],
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.insertSpaces": false,
+    "editor.renderWhitespace": "all",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "workbench.colorCustomizations": {
+        "editorWhitespace.foreground": "#7e7e7e"
+    },
+    "42header.email": "eryudi-m@student.42sp.org.br",
+    "42header.username": "eryudi-m",
+    "files.associations": {
+        "libft.h": "c"
+    }
+}

@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/22 17:37:21 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/05/02 20:35:37 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/11/21 16:30:45 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../inc/libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h> //perror
-#include "libft.h"
+char	*ft_strrchr(const char *s, int c)
+{
+	size_t	len_src;
+	size_t	cnt;
+	char	*i;
 
-int	pipex(int argc, char **argv);
-
-#endif
+	len_src = ft_strlen(s);
+	i = (char *)s + len_src;
+	cnt = 0;
+	if (!ft_isascii(c))
+		return ((char *) s);
+	if (c == '\0')
+		return ((char *)s + len_src);
+	while (s + len_src >= s)
+	{
+		if (s[len_src] == c)
+			return (i - cnt);
+		len_src--;
+		cnt++;
+	}
+	return (NULL);
+}

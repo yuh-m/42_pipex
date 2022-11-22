@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_printf_puts.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/22 17:37:21 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/08/06 12:39:38 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/08/06 21:25:53 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../include/ft_printf.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h> //perror
-#include "libft.h"
+void	ft_putchar_fd(const char chr, int fd)
+{
+	write(fd, &chr, 1);
+}
 
-int	pipex(int argc, char **argv);
-
-#endif
+void	ft_putnbr_unsig(unsigned int u, int fd)
+{
+	if (u > 9)
+		ft_putnbr_unsig(u / 10, fd);
+	ft_putchar_fd(u % 10 + '0', fd);
+}

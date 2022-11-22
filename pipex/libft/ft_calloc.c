@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/22 17:37:21 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/05/09 10:28:20 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/11/21 16:30:45 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../inc/libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h> //perror
-#include "libft.h"
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t	tot_size;
+	void	*result;
 
-int	pipex(int argc, char **argv);
-
-#endif
+	tot_size = nmemb * size;
+	if (tot_size)
+	{
+		if ((tot_size / nmemb) != size)
+			return (NULL);
+		result = malloc(tot_size);
+		if (!result)
+			return (NULL);
+		ft_bzero(result, tot_size);
+	}
+	else
+		result = malloc(0);
+	return (result);
+}

@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 20:25:34 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/11/11 07:16:28 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/11/22 17:42:43 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,15 +41,33 @@ RM = rm -f
 MAKE_NOPRINT = $(MAKE) --no-print-directory
 
 #TARGETS
-all: libft $(NAME)
+all: libft $(NAME) main
 
 libft:
 	@cd $(PATH_LIBFT) && $(MAKE_NOPRINT)
 
-$(NAME): libft $(OBJECTS)
+$(NAME): $(OBJECTS)
+	@cp $(PATH_LIBFT)libft.a $(PATH_LIBFT)$(NAME)
+	@ar -rcs $(PATH_LIBFT)$(NAME) $(OBJECTS)
+
+
+$(PATH_OBJ)%.o : $(PATH_SRC)%.c $(PATH_INC)*.h
+	mkdir -p $(PATH_OBJ)
+	$(CC) $(FLAGS) -c $< -o $@
+
+main: $(APP_FILE)
 	@$(MKDIR) $(PATH_BIN)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) -L $(PATH_LIBFT) -lft
+	@$(CC) $(FLAGS) $(OBJECTS) $< $(PATH_LIBFT)$(NAME) -I$(PATH_INC) -o $(PATH_BIN)$(NAME)
 
-$(PATH_OBJ)%.o : $(PATH_SRC)%.c
+#Delete compiled files
+clean:
+	@cd $(PATH_LIBFT) && $(MAKE) clean
+	@$(RM) $(OBJECTS)
 
+fclean: clean
+	@cd $(PATH_LIBFT) && $(MAKE) fclean
+	@$(RM) $(PATH_BIN)$(NAME)
 
+re: fclean all
+
+.PHONY: all clean fclean re libft
