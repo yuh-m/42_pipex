@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 20:25:34 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/11/22 17:42:43 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/11/27 20:04:59 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ PATH_LIBFT =./libft/
 
 #FILES
 APP_FILE = ./app/app.c
-SRC_FILES = pipex.c
+SRC_FILES = test_signals.c \
+			#test_exec.c \
+			#pipex.c
 
 SOURCES = $(addprefix $(PATH_SRC), $(SRC_FILES))
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
@@ -58,6 +60,12 @@ $(PATH_OBJ)%.o : $(PATH_SRC)%.c $(PATH_INC)*.h
 main: $(APP_FILE)
 	@$(MKDIR) $(PATH_BIN)
 	@$(CC) $(FLAGS) $(OBJECTS) $< $(PATH_LIBFT)$(NAME) -I$(PATH_INC) -o $(PATH_BIN)$(NAME)
+
+#Tests
+test: all
+	$(PATH_BIN)$(NAME) "HelloWorld"
+leak:
+	$(VALGRIND) $(PATH_BIN)$(NAME) "HelloWorld"
 
 #Delete compiled files
 clean:
