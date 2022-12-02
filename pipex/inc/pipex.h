@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/27 20:27:00 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/02 02:26:23 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h> //perror
-#include "libft.h"
 #include <sys/wait.h> //wait
 #include <signal.h>
+#include "libft.h"
 
-//# define STDIN 0
-//# define STDOUT 1
+#define READ 0
+#define WRITE 1
 
 int	pipex(int argc, char **argv);
 

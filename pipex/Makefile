@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 20:25:34 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/11/27 20:04:59 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/12/02 02:26:17 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,13 @@ PATH_LIBFT =./libft/
 
 #FILES
 APP_FILE = ./app/app.c
-SRC_FILES = test_signals.c \
+SRC_FILES = pipex.c \
+			#test_pipe.c \
+			#pipex.c \
 			#test_exec.c \
-			#pipex.c
-
+			#test_signal_communicate_process.c \
+			#test_signals.c \
+			
 SOURCES = $(addprefix $(PATH_SRC), $(SRC_FILES))
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
 OBJECTS = $(addprefix $(PATH_OBJ), $(OBJ_FILES))
