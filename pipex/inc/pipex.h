@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/02 02:33:43 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/03 03:29:27 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@
 #define WRITE 1
 //#define
 
-int	pipex(int argc, char **argv);
+int	pipex(int argc, char **argv, char **envp);
 int err_argument_number(void);
 #endif
