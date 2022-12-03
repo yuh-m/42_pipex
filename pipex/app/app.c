@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 08:54:34 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/03 03:30:33 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/03 04:38:09 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	int a;
 	a = pipex(argc, argv, envp);
+/*
 	ft_printf("error - %d \n", a);
 	int n = 0;
 
@@ -23,6 +24,7 @@ int	main(int argc, char **argv, char **envp)
 	printf("envp[%d]: <%s\n", n, envp[n]);
 	n++;
 	}
+*/
 	
 	return (0);
 }

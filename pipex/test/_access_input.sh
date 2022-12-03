@@ -39,7 +39,7 @@ echo "" >> z_log_access_input.txt.txt
 echo $line1>> z_log_access_input.txt.txt
 
 touch no_read.txt
-cat "HELLOABVVD hello" >> no_read.txt
+echo "HELLOABVVD hello" >> no_read.txt
 chmod 333 no_read.txt
 echo "TEST 3 - No read - no_read.txt" >> z_log_access_input.txt.txt
 file_input="no_read.txt"

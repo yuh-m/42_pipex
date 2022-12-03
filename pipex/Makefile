@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 20:25:34 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/12/02 21:49:35 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/12/03 04:38:08 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,18 +76,20 @@ fclean: clean
 
 #Tests
 test: all
-	$(PATH_BIN)$(NAME) "HelloWorld" "abc" "cdv" "abde"
+	$(PATH_BIN)$(NAME) HelloWorld "abc" "cdv" "abde"
 leak:
 	$(VALGRIND) $(PATH_BIN)$(NAME) "HelloWorld"
 
 #These tests shoud fail - error
-one_arg:
-	$(VALGRIND) $(PATH_BIN)$(NAME) "HelloWorld"
+one_arg: all
 	$(VALGRIND) $(PATH_BIN)$(NAME) "./test/input.txt"
-access:
+
+access: all
 	$(VALGRIND) $(PATH_BIN)$(NAME) ""
 
 #These tests are a pass
+valid:
+	$(PATH_BIN)$(NAME) ./test/input1.txt "abc" "cdv" "abde"
 
 
 

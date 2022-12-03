@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/03 03:29:27 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/03 04:38:07 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,23 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h> //perror
+#include <string.h> //strerror
 #include <sys/wait.h> //wait
 #include <signal.h>
 #include "libft.h"
 
 #define READ 0
 #define WRITE 1
-//#define
 
+/** @brief args - file1 cmd1 cmd2 file2
+ * @param argc arguments count
+ * @param argv arguments vector
+ * @param envp enviroment variables
+**/
 int	pipex(int argc, char **argv, char **envp);
-int err_argument_number(void);
+
+/**
+	@brief Check if pipex holds exactly 4 arguments
+**/
+int check_argc(int argc);
 #endif
