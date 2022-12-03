@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 20:25:34 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/12/02 02:26:17 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/12/02 21:49:35 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ PATH_LIBFT =./libft/
 #FILES
 APP_FILE = ./app/app.c
 SRC_FILES = pipex.c \
+			errors.c \
 			#test_pipe.c \
 			#pipex.c \
 			#test_exec.c \
@@ -64,12 +65,6 @@ main: $(APP_FILE)
 	@$(MKDIR) $(PATH_BIN)
 	@$(CC) $(FLAGS) $(OBJECTS) $< $(PATH_LIBFT)$(NAME) -I$(PATH_INC) -o $(PATH_BIN)$(NAME)
 
-#Tests
-test: all
-	$(PATH_BIN)$(NAME) "HelloWorld"
-leak:
-	$(VALGRIND) $(PATH_BIN)$(NAME) "HelloWorld"
-
 #Delete compiled files
 clean:
 	@cd $(PATH_LIBFT) && $(MAKE) clean
@@ -78,6 +73,23 @@ clean:
 fclean: clean
 	@cd $(PATH_LIBFT) && $(MAKE) fclean
 	@$(RM) $(PATH_BIN)$(NAME)
+
+#Tests
+test: all
+	$(PATH_BIN)$(NAME) "HelloWorld" "abc" "cdv" "abde"
+leak:
+	$(VALGRIND) $(PATH_BIN)$(NAME) "HelloWorld"
+
+#These tests shoud fail - error
+one_arg:
+	$(VALGRIND) $(PATH_BIN)$(NAME) "HelloWorld"
+	$(VALGRIND) $(PATH_BIN)$(NAME) "./test/input.txt"
+access:
+	$(VALGRIND) $(PATH_BIN)$(NAME) ""
+
+#These tests are a pass
+
+
 
 re: fclean all
 
