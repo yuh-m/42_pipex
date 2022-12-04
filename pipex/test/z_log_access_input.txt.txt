@@ -31,7 +31,7 @@ Shell output:
 Pipex output:
 argc 5 || argv[0] ../bin/pipex || envp[0] SHELL=/bin/bash 
 file_not_found
-pipex: no_read.txt: Permission denied 
+pipex: no_read.txt: Permission denied || 32 ||src/pipex.c 
 =======================================================================================
 
 =======================================================================================
@@ -43,7 +43,7 @@ Shell output:
 Pipex output:
 argc 5 || argv[0] ../bin/pipex || envp[0] SHELL=/bin/bash 
 file_not_found
-pipex: no_existing_file: No such file or directory 
+pipex: no_existing_file: No such file or directory || 32 ||src/pipex.c 
 =======================================================================================
 
 =======================================================================================

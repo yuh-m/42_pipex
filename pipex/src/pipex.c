@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:37:31 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/03 04:38:03 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/03 18:34:24 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int	pipex(int argc,char **argv,  char **envp)
 	{
 		ft_printf("file_not_found\n");
 		//ft_printf("pipex: %s: %s \n", argv[1], strerror(errno));
-		ft_printf("pipex: %s: %s \n", argv[1], strerror(errno)); // it should'n be on log but on stderror instead
-
+		ft_printf("pipex: %s: %s || %d ||%s \n", argv[1], strerror(errno), __LINE__, __FILE__ ); // it should'n be on log but on stderror instead
+		//ft_putstr_fd(__LINE__, STDERR_FILENO);
+		
 	}	
 	return (0);
 }
