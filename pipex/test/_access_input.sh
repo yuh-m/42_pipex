@@ -67,5 +67,5 @@ echo $line1>> z_log_access_input.txt.txt
 echo "" >> z_log_access_input.txt.txt
 echo $line1>> z_log_access_input.txt.txt
 
-#list all defined macros called in file
-cpp -dM ../inc/pipex.h  > file_macros.txt
+##list all defined macros called in file
+#cpp -dM ../inc/pipex.h  > file_macros.txt

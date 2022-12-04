@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:39:23 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/11/21 16:30:45 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/04 00:13:26 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,25 @@ int	ft_print_pointer(void *pointer)
 	base = "0123456789abcdef";
 	address = ft_itoa_base((unsigned long) pointer, base);
 	bytes += ft_print_string(address);
+	free(address);
+	return (bytes);
+}
+
+int	ft_fprint_pointer(int fd, void *pointer)
+{
+	char	*base;
+	char	*address;
+	int		bytes;
+
+	if (!pointer)
+	{
+		bytes = ft_fprint_string(fd, "(nil)");
+		return (bytes);
+	}
+	bytes = ft_fprint_string(fd, "0x");
+	base = "0123456789abcdef";
+	address = ft_itoa_base((unsigned long) pointer, base);
+	bytes += ft_fprint_string(fd, address);
 	free(address);
 	return (bytes);
 }

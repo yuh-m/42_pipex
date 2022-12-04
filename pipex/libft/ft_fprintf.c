@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,17 +12,17 @@
 
 #include "../inc/libft.h"
 
-static int	assign_specifier(char format, va_list ap)
+static int	assign_specifier(int fd, char format, va_list ap)
 {
 	int	bytes;
 
 	bytes = 0;
 	if (format == '%')
-		bytes += ft_print_char('%');
+		bytes += ft_fprint_char(fd, '%');
 	else if (format == 'c')
-		bytes += ft_print_char(va_arg(ap, int));
+		bytes += ft_fprint_char(fd, va_arg(ap, int));
 	else if (format == 's')
-		bytes += ft_print_string(va_arg(ap, char *));
+		bytes += ft_fprint_string(fd, va_arg(ap, char *));
 	else if (format == 'i' || format == 'd')
 		bytes += ft_print_integer(va_arg(ap, int));
 	else if (format == 'u')
@@ -34,7 +34,7 @@ static int	assign_specifier(char format, va_list ap)
 	return (bytes);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_fprintf(int fd, const char *format, ...)
 {
 	va_list	ap;
 	int		bytes;
@@ -46,10 +46,10 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			bytes += assign_specifier(*format, ap);
+			bytes += assign_specifier(fd, *format, ap);
 		}
 		else
-			bytes += ft_print_char(*format);
+			bytes += ft_fprint_char(fd, *format);
 		format++;
 	}
 	va_end (ap);

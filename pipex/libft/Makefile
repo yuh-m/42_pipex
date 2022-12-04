@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 00:10:26 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/11/22 19:22:15 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/12/04 00:15:56 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,11 @@ ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
 ft_strmapi.c ft_striteri.c \
 ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 get_next_line.c \
-ft_len_unsigned.c ft_itoa_base.c ft_printf.c ft_print_char.c \
-ft_print_string.c ft_print_integer.c ft_print_unsigned_int.c \
-ft_print_pointer.c ft_print_x.c ft_putnbr_unsig.c
+ft_len_unsigned.c ft_itoa_base.c \
+ft_printf.c ft_print_char.c ft_print_string.c ft_print_integer.c \
+ft_print_unsigned_int.c ft_print_pointer.c ft_print_x.c ft_putnbr_unsig.c \
+ft_fprintf.c 
+
 
 HEADER_PATH = ../inc/
 OBJ = $(patsubst %.c, %.o, $(SRC))

@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/03 04:38:07 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/04 14:30:38 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define PIPEX_H
 
 #include <fcntl.h> //open, read,
-#include <unistd.h> //execl
+#include <unistd.h> //execl, access
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h> //perror
 #include <string.h> //strerror
 #include <sys/wait.h> //wait
 #include <signal.h>
-#include "libft.h"
+#include "../inc/libft.h"
 
 #define READ 0
 #define WRITE 1

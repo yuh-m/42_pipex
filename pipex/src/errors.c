@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:04:09 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/03 04:38:06 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/04 14:30:38 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	check_argc(int argc)
 		exit(1);
 	}
 	return (0);
+}
+
+int check_input_file(char *file1)
+{
+
 }
 
 int	handle_error(void)
