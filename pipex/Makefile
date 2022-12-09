@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 20:25:34 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/12/08 22:55:16 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/12/09 16:25:13 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,16 +78,24 @@ fclean: clean
 
 #Tests
 test: all
-	$(PATH_BIN)$(NAME) ./test/input1.txt "ls -l" "wc -c" "output.txt"
+	$(PATH_BIN)$(NAME) ./test/input1.txt "ls -l" "wc -c" ./test/output.txt
 leak:
-	$(VALGRIND) $(PATH_BIN)$(NAME) ./test/input1.txt "abc" "grep d" "output.txt"
+	$(VALGRIND) -s $(PATH_BIN)$(NAME) ./test/input1.txt "abc" "grep d" "output.txt"
 
 #These tests shoud fail - error
 one_arg: all
 	$(VALGRIND) $(PATH_BIN)$(NAME) "./test/input.txt"
 
-access: all
-	$(VALGRIND) $(PATH_BIN)$(NAME) ""
+input_test: all
+	$(VALGRIND) $(PATH_BIN)$(NAME) ./test/inut1.txt "ls -l" "wc -c" "output.txt"
+
+input_test1: all
+	touch ./test/no_read.txt
+	echo "HELLOABVVD hello" >> ./test/no_read.txt
+	chmod 333 ./test/no_read.txt
+	$(VALGRIND) $(PATH_BIN)$(NAME) ./test/no_read.txt "ls -l" "wc -c" "output.txt"
+##rm -f ./test/no_read.txt
+#< no_read.txt ls -l | wc -c > "output.txt"
 
 #These tests are a pass
 valid:

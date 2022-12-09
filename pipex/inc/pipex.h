@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 09:03:57 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/08 22:58:49 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:07:18 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 #define READ 0
 #define WRITE 1
+#define E_INV_CMD "Invalid command"
 
 typedef struct s_data
 {
@@ -53,10 +54,12 @@ typedef struct s_data
 **/
 int	pipex(int argc, char **argv, char **envp);
 
+//erros
 /**
 	@brief Check if pipex holds exactly 4 arguments
 **/
 int check_argc(int argc);
+int check_access(t_data data);
 
 /** @brief open file in read or write mode
  * @param file path of filename

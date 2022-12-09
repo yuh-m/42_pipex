@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:37:31 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/08 22:59:50 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:28:17 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static char* get_cmd (char **path_env, char *cmd)
 		free(command);
 		path_env++;
 	}
-	return (NULL);
+	return (E_INV_CMD);
 }
 
 static char** get_env_paths(char **envp)
@@ -79,12 +79,14 @@ static char** get_env_paths(char **envp)
 	return (paths);
 }
 
+/*
 static char *path_env_string(char **envp)
 {
 	while (ft_strncmp("PATH=",*envp, 5))
 		envp++;
 	return (*envp + 5);
 }
+*/
 
 static void init_data(t_data *data, int argc, char **argv, char **envp)
 {
@@ -92,10 +94,10 @@ static void init_data(t_data *data, int argc, char **argv, char **envp)
 		data->argv = argv;
 		data->envp = envp;
 		data->path_env = get_env_paths(envp);
-		data->path_env_string = path_env_string(envp);
-		data->cmd_path = ft_split(data->path_env_string, ':');
-		data->cmd_args = get_cmd_args(argv[2]);
-		data->cmd = get_cmd(data->path_env, data->cmd_args[0]);
+		//data->cmd_args = data->path_env;
+		//data->path_env_string = path_env_string(envp);
+		//data->cmd_path = ft_split(data->path_env_string, ':');
+		
 }
 
 int	pipex(int argc,char **argv,  char **envp)
@@ -106,26 +108,45 @@ int	pipex(int argc,char **argv,  char **envp)
 	//ft_printf("argc %d || argv[0] %s || envp[0] %s \n",argc, argv[0], envp[0]);
 	check_argc(argc);
 	init_data(&data, argc, argv, envp);
-	if(access(argv[1], F_OK & R_OK) != -1)
+	data.fd_in = file_open(argv[1], READ);
+	data.fd_out = file_open(argv[4], WRITE);
+	check_access(data);
+	data.pipe = pipe(data.pipe_fd);
+	data.pid1 = fork();
+
+	if (data.pid1 == 0)
 	{
-		data.fd_in = file_open(argv[1], READ);
-		data.fd_out = file_open(argv[4], WRITE);
-		data.pipe = pipe(data.pipe_fd);
-		data.pid1 = fork();
-		if (data.pid1 == 0)
+		dup2(data.pipe_fd[1], STDOUT_FILENO);
+		close(data.pipe_fd[0]);
+		dup2(data.fd_in,STDIN_FILENO);
+		data.cmd_args = get_cmd_args(argv[2]);
+		data.cmd = get_cmd(data.path_env, data.cmd_args[0]);
+		/*
+		if (ft_strncmp(data.cmd, E_INV_CMD, ft_strlen(data.cmd)) == 0)
 		{
-			execve(data.cmd, data.cmd_args, data.path_env);
+			free_child_pd(&data);
+			free_data(&data);
+			perror(E_INV_CMD);
+			exit(127);
 		}
-		data.pid2 = fork();
-		if (data.pid2 == 0)
-		{
-			//execve(data.cmd, data.cmd_args, data.path_env);
-			//ft_printf(" \n 2nd process\n");
-		}
-		waitpid(data.pid1, &id_status, 0);
-		waitpid(data.pid2, &id_status, 0);
+		printf("HEELLOOO");
+		*/
+		execve(data.cmd, data.cmd_args, data.path_env);	
 	}
-	else
-		ft_fprintf(STDERR_FILENO,"pipex: %s: %s\n", argv[1], strerror(errno));
-	return (0);
+	data.pid2 = fork();
+	if (data.pid2 == 0)
+	{
+		dup2(data.pipe_fd[0], STDIN_FILENO);
+		close(data.pipe_fd[1]);
+		dup2(data.fd_out, STDOUT_FILENO);
+		data.cmd_args = get_cmd_args(argv[3]);
+		data.cmd = get_cmd(data.path_env, data.cmd_args[0]);
+		execve(data.cmd, data.cmd_args, data.path_env);
+		//ft_printf(" \n 2nd process\n");
+	}
+	close_pipes_fd(&data);
+	waitpid(data.pid1, &id_status, 0);
+	waitpid(data.pid2, &id_status, 0);
+	free_data(&data);
+	return (WEXITSTATUS(id_status));
 }
