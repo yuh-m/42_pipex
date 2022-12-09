@@ -24,7 +24,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/bin/pipex",
-			"args": ["HELLO"],
+			"args": ["../test/input1.txt", "ls -l", "grep d", "../test/z_output.txt"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

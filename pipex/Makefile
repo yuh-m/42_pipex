@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 20:25:34 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/12/03 04:38:08 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/12/08 22:55:16 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ PATH_LIBFT =./libft/
 APP_FILE = ./app/app.c
 SRC_FILES = pipex.c \
 			errors.c \
+			file_handler.c \
+			free.c 
 			#test_pipe.c \
 			#pipex.c \
 			#test_exec.c \
@@ -76,9 +78,9 @@ fclean: clean
 
 #Tests
 test: all
-	$(PATH_BIN)$(NAME) HelloWorld "abc" "cdv" "abde"
+	$(PATH_BIN)$(NAME) ./test/input1.txt "ls -l" "wc -c" "output.txt"
 leak:
-	$(VALGRIND) $(PATH_BIN)$(NAME) "HelloWorld"
+	$(VALGRIND) $(PATH_BIN)$(NAME) ./test/input1.txt "abc" "grep d" "output.txt"
 
 #These tests shoud fail - error
 one_arg: all
