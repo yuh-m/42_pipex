@@ -24,8 +24,11 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/bin/pipex",
-			"args": ["../test/input1.txt", "ls -l", "grep d", "../test/z_output.txt"],
+			"args": ["../test/input1.txt", "abcdefgh -l", "grep d", "../test/z_output.txt"],
+			//"args": ["../test/non_file_existence.txt", "ls -l", "grep d", "../test/z_output.txt"],
+			//"args": ["../test/input1.txt", "ls -l", "grep d", "../test/z_output.txt"],
 			//"args": ["/test/no_read.txt" ,"ls -l", "wc -c" "output.txt"],
+			//./test/inut1.txt "ls -l" "wc -c" "output.txt"
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

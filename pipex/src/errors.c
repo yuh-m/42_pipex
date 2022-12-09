@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:04:09 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/12/09 02:05:55 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:07:15 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int check_access(t_data data)
 		int	exit_code;
 		
 		exit_code = 0;
+		free_data(&data);
 		if(access(data.argv[1],  R_OK))
 		{
 			ft_fprintf(STDERR_FILENO,"pipex: %s: %s\n", data.argv[1], strerror(errno));
 			exit(errno);
 		}
-		free_data(&data);
 		ft_fprintf(STDERR_FILENO,"pipex: %s: %s\n", data.argv[1], strerror(errno));
 		exit(errno);
 	}

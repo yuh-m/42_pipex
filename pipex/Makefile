@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 20:25:34 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/12/09 16:25:13 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/12/09 19:29:56 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ APP_FILE = ./app/app.c
 SRC_FILES = pipex.c \
 			errors.c \
 			file_handler.c \
-			free.c 
+			free.c \
+			pipe_handler.c \
 			#test_pipe.c \
 			#pipex.c \
 			#test_exec.c \
@@ -78,11 +79,16 @@ fclean: clean
 
 #Tests
 test: all
-	$(PATH_BIN)$(NAME) ./test/input1.txt "ls -l" "wc -c" ./test/output.txt
+	$(PATH_BIN)$(NAME) ./test/input1.txt "abcdefgtest A" "aaaaaaa -c" ./test/output.txt
 leak:
-	$(VALGRIND) -s $(PATH_BIN)$(NAME) ./test/input1.txt "abc" "grep d" "output.txt"
+	$(VALGRIND) -s $(PATH_BIN)$(NAME) ./test/input1.txt "grep A" "wc -c" "output.txt"
 
-#These tests shoud fail - error
+
+leak2:
+	$(VALGRIND) -s $(PATH_BIN)$(NAME) ./test/input1.txt "ls -a" "abd -c" "output.txt"
+
+	
+###THESE TESTS SHOULD FAIL SOMEHOW
 one_arg: all
 	$(VALGRIND) $(PATH_BIN)$(NAME) "./test/input.txt"
 
@@ -94,6 +100,10 @@ input_test1: all
 	echo "HELLOABVVD hello" >> ./test/no_read.txt
 	chmod 333 ./test/no_read.txt
 	$(VALGRIND) $(PATH_BIN)$(NAME) ./test/no_read.txt "ls -l" "wc -c" "output.txt"
+
+cmd_invalid: all
+	$(VALGRIND) $(PATH_BIN)$(NAME) ./test/input1.txt "abcdefgtest A" "aaaaaaa -c" ./test/output.txt
+
 ##rm -f ./test/no_read.txt
 #< no_read.txt ls -l | wc -c > "output.txt"
 
